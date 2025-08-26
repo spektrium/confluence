@@ -1,7 +1,7 @@
 version: '3.4'
 services:
   confluence:
-    image: haxqer/confluence:8.5.23
+    image: spektrium/confluence:9.2.7
     container_name: confluence-srv
     environment:
       - TZ=Asia/Shanghai

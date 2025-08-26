@@ -1,10 +1,9 @@
-FROM openjdk:11-bullseye
+FROM openjdk:17-bullseye
 
-LABEL maintainer="haxqer <haxqer666@gmail.com>" version="8.5.23"
 
 ARG ATLASSIAN_PRODUCTION=confluence
 ARG APP_NAME=confluence
-ARG APP_VERSION=8.5.23
+ARG APP_VERSION=9.2.7
 ARG AGENT_VERSION=1.3.3
 ARG MYSQL_DRIVER_VERSION=8.0.22
 
@@ -20,7 +19,7 @@ ENV CONFLUENCE_HOME=/var/confluence \
 ENV JAVA_OPTS="-javaagent:${AGENT_PATH}/${AGENT_FILENAME} ${JAVA_OPTS}"
 
 RUN mkdir -p ${CONFLUENCE_INSTALL} ${CONFLUENCE_HOME} ${AGENT_PATH} ${CONFLUENCE_INSTALL}${LIB_PATH} \
-&& curl -o ${AGENT_PATH}/${AGENT_FILENAME}  https://github.com/haxqer/confluence/releases/download/v${AGENT_VERSION}/atlassian-agent.jar -L \
+&& curl -o ${AGENT_PATH}/${AGENT_FILENAME}  https://github.com/spektrium/confluence/releases/download/v${AGENT_VERSION}/atlassian-agent.jar -L \
 && curl -o /tmp/atlassian.tar.gz https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-${APP_NAME}-${APP_VERSION}.tar.gz -L \
 && tar xzf /tmp/atlassian.tar.gz -C /opt/confluence/ --strip-components 1 \
 && rm -f /tmp/atlassian.tar.gz \
